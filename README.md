@@ -28,6 +28,8 @@ cd PokeApp
 npm install
 ```
 
+Dentro del código del repositorio, encontrarás un archivo llamado app-debug.apk. Puedes instalar este archivo APK en un dispositivo Android para probar la aplicación directamente.
+
 ![image](https://github.com/user-attachments/assets/c3e1b9c4-7b4e-4c13-a535-c7ca41fa9edd)
 
 ![image](https://github.com/user-attachments/assets/913d93cc-c040-4229-89a4-eb958add1f11)
