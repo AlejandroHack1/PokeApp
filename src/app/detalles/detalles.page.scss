@@ -1,0 +1,14 @@
+.image-gallery {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.image-gallery img {
+    width: 100px;
+    height: auto;
+}
+ .detail-container{
+    color: black;
+    margin-left: 10%;
+ }

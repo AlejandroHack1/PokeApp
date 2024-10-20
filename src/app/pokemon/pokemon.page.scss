@@ -1,0 +1,13 @@
+.image {
+    max-width: 100%; 
+    max-height: 100%;
+    width: 200px;     
+    height: 300px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px; 
+  }

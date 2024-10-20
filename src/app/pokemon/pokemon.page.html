@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Administración de Pokémon</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addPokemon()">Añadir</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Cantidad de registros por página</ion-label>
+    <ion-select [(ngModel)]="selectedLimit" (ionChange)="loadPokemons()">
+      <ion-select-option value="5">5</ion-select-option>
+      <ion-select-option value="10">10</ion-select-option>
+      <ion-select-option value="20">20</ion-select-option>
+      <ion-select-option value="50">50</ion-select-option>
+      <ion-select-option value="100">100</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterPokemons()" placeholder="Buscar Pokémon..."></ion-searchbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="addingNewPokemon">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Añadir Pokémon</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-input [(ngModel)]="editedPokemon.name" placeholder="Nombre"></ion-input>
+            <ion-input [(ngModel)]="editedPokemon.url" placeholder="URL de la imagen"></ion-input>
+            <ion-button expand="full" (click)="savePokemon(null)">Guardar</ion-button>
+            <ion-button expand="full" (click)="cancelEdit()">Cancelar</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="4" size-lg="3" *ngFor="let pokemon of filteredPokemons; let i = index">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              <ng-container *ngIf="editingPokemonIndex === i; else viewMode">
+                <ion-input [(ngModel)]="editedPokemon.name"></ion-input>
+              </ng-container>
+              <ng-template #viewMode>
+                {{ pokemon.name }}
+              </ng-template>
+            </ion-card-title>
+          </ion-card-header>
+
+          <div class="image-container">
+            <img [src]="getPokemonImage(pokemon.url.split('/')[6])" alt="{{ pokemon.name }}" class="image" />
+          </div>
+
+          <ion-card-content>
+            <ng-container *ngIf="editingPokemonIndex === i; else actionButtons">
+              <ion-button expand="full" (click)="savePokemon(i)">Guardar</ion-button>
+              <ion-button expand="full" (click)="cancelEdit()">Cancelar</ion-button>
+            </ng-container>
+            <ng-template #actionButtons>
+              <ion-button expand="full" (click)="editPokemon(i)">Editar</ion-button>
+              <ion-button expand="full" (click)="deletePokemon(i)">Eliminar</ion-button>
+              <ion-button expand="full" (click)="viewDetails(pokemon.url.split('/')[6])">Ver</ion-button>
+            </ng-template>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button expand="full" (click)="takePicture()">Tomar Foto</ion-button>
+  <div *ngIf="capturedPhoto">
+    <img [src]="capturedPhoto" />
+  </div>
+</ion-content>
