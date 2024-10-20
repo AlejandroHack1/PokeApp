@@ -12,6 +12,11 @@ Asegúrate de tener instalados los siguientes programas:
 - [Capacitor](https://capacitorjs.com/docs/getting-started)
 - Android Studio (para compilar la APK)
 
+## Versión
+
+- **Ionic**: 6.20.3
+- **Angular**: 18
+  
 ## Clonar el repositorio
 
 Para clonar el repositorio, usa el siguiente comando:
